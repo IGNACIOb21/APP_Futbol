@@ -12,7 +12,6 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class HomePage implements OnInit {
 
-  firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
   weatherService = inject(WeatherService);
 
@@ -51,9 +50,6 @@ export class HomePage implements OnInit {
     return date.getHours() + ':00';
   }
 
-  //===== Cerrar Sesión ======
-signOut() {
-  this.firebaseSvc.signOut();
-}
+
 }
 
