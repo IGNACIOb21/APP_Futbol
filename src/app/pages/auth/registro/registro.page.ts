@@ -10,88 +10,123 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-
-  form =new FormGroup({
+  form = new FormGroup({
     uid: new FormControl(''),
-    email: new FormControl('',[Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required]),
-    name: new FormControl('',[Validators.required, Validators.minLength(4)]),
-    apellidoPaterno: new FormControl('',[Validators.required, Validators.minLength(4)]),
-    apellidoMaterno: new FormControl('',[Validators.required, Validators.minLength(4)]),
-    tipoUsuario: new FormControl('',[Validators.required, Validators.minLength(4)])
-  })
-  
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    apellidoPaterno: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    apellidoMaterno: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    tipoUsuario: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      this.validateUserType(),
+    ]),
+  });
+
   firebaseSvc = inject(FirebaseService);
-  utilsSvc = inject(UtilsService)
+  utilsSvc = inject(UtilsService);
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  // Método personalizado para validar tipoUsuario
+  validateUserType() {
+    const allowedUserTypes = ['admin', 'jugador', 'arbitro']; // Lista de tipos permitidos
+    return (control: FormControl) => {
+      return allowedUserTypes.includes(control.value)
+        ? null
+        : { invalidUserType: 'Tipo de usuario no válido' };
+    };
   }
 
-
-  async submit(){
-    if (this.form.valid){
-
+  async submit() {
+    if (this.form.valid) {
       const loading = await this.utilsSvc.loading();
       await loading.present();
 
-      this.firebaseSvc.regidtroIn(this.form.value as User).then( async res => {
-        await this.firebaseSvc.updateUser(this.form.value.name);
+      try {
+        // Crear el usuario en Firebase Authentication
+        const res = await this.firebaseSvc.regidtroIn(this.form.value as User);
 
-        let uid = res.user.uid;
+        // Obtener uid y establecer en el formulario
+        const uid = res.user.uid;
         this.form.controls.uid.setValue(uid);
-        this.setUserInfo(uid)
 
+        // Eliminar contraseña antes de enviar a Firestore
+        delete this.form.value.password;
 
-      }).catch(error =>{
-        console.log(error);
-        this.utilsSvc.presentToast({
-          message: error.message,
-          duration: 2500,
-          color: 'primary',
-          position: 'middle',
-          icon: 'alert-circle-outline'
-        })
+        // Guardar información en Firestore
+        await this.setUserInfo(uid);
 
-      }).finally(() =>{
-        loading.dismiss();
+        // Redirigir al usuario según el tipo de usuario
+      const tipoUsuario = this.form.value.tipoUsuario;
+      this.redirectBasedOnUserType(tipoUsuario);
 
-      })
-    }
-  }
-
-
-  async setUserInfo(uid: string){
-    if (this.form.valid){
-
-      const loading = await this.utilsSvc.loading();
-      await loading.present();
-
-      let path = `users/${uid}`;
-      delete this.form.value.password;
-
-      this.firebaseSvc.setDocument(path, this.form.value).then( async res => {
-        
-        this.utilsSvc.saveInLocalStorage('user', this.form.value)
+        // Redirigir al usuario y guardar en LocalStorage
+        this.utilsSvc.saveInLocalStorage('user', this.form.value);
         this.utilsSvc.routerLink('/main/home');
         this.form.reset();
-
-      }).catch(error =>{
-        console.log(error);
+      } catch (error) {
+        console.error(error);
         this.utilsSvc.presentToast({
           message: error.message,
           duration: 2500,
-          color: 'primary',
+          color: 'danger',
           position: 'middle',
-          icon: 'alert-circle-outline'
-        })
-
-      }).finally(() =>{
+          icon: 'alert-circle-outline',
+        });
+      } finally {
         loading.dismiss();
+      }
+    } else {
+      this.utilsSvc.presentToast({
+        message: 'Formulario inválido. Revisa los campos.',
+        duration: 2500,
+        color: 'warning',
+        position: 'middle',
+        icon: 'alert-circle-outline',
+      });
+    }
+  }
 
-      })
+  private async setUserInfo(uid: string) {
+    const path = `users/${uid}`;
+    const loading = await this.utilsSvc.loading();
+    await loading.present();
+
+    try {
+      await this.firebaseSvc.setDocument(path, this.form.value);
+    } catch (error) {
+      console.error(error);
+      this.utilsSvc.presentToast({
+        message: error.message,
+        duration: 2500,
+        color: 'danger',
+        position: 'middle',
+        icon: 'alert-circle-outline',
+      });
+    } finally {
+      loading.dismiss();
     }
   }
 
 
 
+
+  private redirectBasedOnUserType(tipoUsuario: string) {
+    switch (tipoUsuario) {
+      case 'arbitro':
+        this.utilsSvc.routerLink('./main/arbitro'); // Página del árbitro
+        break;
+      case 'jugador':
+        this.utilsSvc.routerLink('/pages/jugador'); // Página del jugador
+        break;
+      case 'admin':
+        this.utilsSvc.routerLink('/main/admin'); // Página del administrador
+        break;
+      default:
+        this.utilsSvc.routerLink('/main/home'); // Página predeterminada
+        break;
+    }
+  }
 }

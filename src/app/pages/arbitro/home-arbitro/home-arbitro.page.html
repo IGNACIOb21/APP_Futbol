@@ -1,0 +1,45 @@
+<app-heder title="Inicio"></app-heder>
+
+<ion-content class="ion-padding">
+  <h4 class="location">{{ weatherData?.name }}</h4>
+  <div class="main-info">
+    <img *ngIf="weatherData?.weather[0]?.icon" 
+         src="https://openweathermap.org/img/wn/{{ weatherData?.weather[0]?.icon }}@2x.png" 
+         alt="icono de clima">
+    <h5>{{ weatherData?.weather[0]?.description }}</h5>
+    <h2>{{ weatherData?.main?.temp | number: '1.0-1'}}°C</h2>
+  </div>
+  <div class="other-info">
+    <ion-card>
+      <div class="info">
+        <h5>Viento</h5>
+        <h3>{{ weatherData?.wind?.speed }} m/s</h3>
+      </div>
+    </ion-card>
+    <ion-card>
+      <div class="info">
+        <h5>Humedad</h5>
+        <h3>{{ weatherData?.main?.humidity }}%</h3>
+      </div>
+    </ion-card>
+    <ion-card>
+      <div class="info">
+        <h5>Sensación Térmica</h5>
+        <h3>{{ weatherData?.main?.feels_like }}°C</h3>
+      </div>
+    </ion-card>
+  </div>
+
+  <!-- Pronóstico por horas -->
+  <div class="hourly-forecast">
+    <h4>Pronóstico por horas</h4>
+    <div class="forecast-list">
+      <div *ngFor="let forecast of hourlyForecast" class="forecast-item">
+        <p>{{ formatHour(forecast.dt) }}</p>
+        <img src="https://openweathermap.org/img/wn/{{ forecast.weather[0].icon }}@2x.png" alt="icono de clima">
+        <p>{{ forecast.main.temp | number: '1.0-1' }}°C</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
+

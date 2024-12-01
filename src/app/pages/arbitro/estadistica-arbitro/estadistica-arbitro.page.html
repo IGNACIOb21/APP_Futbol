@@ -1,0 +1,48 @@
+<!-- Lista de jugadores -->
+<ion-list>
+  
+
+  <ion-item *ngFor="let player of players">
+    <ion-card>
+
+    <ion-label>
+      {{ player.name }} {{ player.apellidoPaterno }} {{ player.apellidoMaterno }}
+    </ion-label>
+    <ion-button color="primary" (click)="openEvaluationForm(player.uid)">
+      Evaluar Rendimiento
+    </ion-button>
+  </ion-card>
+
+  </ion-item>
+
+  <!-- Mensaje si no hay jugadores disponibles -->
+  <ion-item *ngIf="players.length === 0">
+    <ion-label>No hay jugadores disponibles para evaluar.</ion-label>
+  </ion-item>
+</ion-list>
+
+<!-- Formulario de evaluación -->
+<ng-container *ngIf="selectedPlayerId">
+  <form (ngSubmit)="submitEvaluation()">
+    <ion-item>
+      <ion-label>Goles:</ion-label>
+      <ion-input type="number" [(ngModel)]="evaluation.goles" name="goles"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Asistencias: </ion-label>
+      <ion-input type="number" [(ngModel)]="evaluation.asistencias" name="asistencias"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tarjetas Amarillas: </ion-label>
+      <ion-input type="number" [(ngModel)]="evaluation.tarjetasAmarillas" name="tarjetasAmarillas"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tarjetas Rojas: </ion-label>
+      <ion-input type="number" [(ngModel)]="evaluation.tarjetasRojas" name="tarjetasRojas"></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block">Guardar Evaluación</ion-button>
+    <ion-button color="danger" expand="block" (click)="cancelEvaluation()">
+      Cancelar
+    </ion-button>
+  </form>
+</ng-container>

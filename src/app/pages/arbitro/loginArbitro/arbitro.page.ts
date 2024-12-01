@@ -1,16 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.page.html',
-  styleUrls: ['./auth.page.scss'],
+  selector: 'app-arbitro',
+  templateUrl: './arbitro.page.html',
+  styleUrls: ['./arbitro.page.scss'],
 })
-export class AuthPage implements OnInit {
+export class ArbitroPage implements OnInit {
   title: string = 'Login';  // Asegúrate de definir esta propiedad
 
   form =new FormGroup({
@@ -63,12 +62,12 @@ export class AuthPage implements OnInit {
       let path = `users/${uid}`;
   
       this.firebaseSvc.getDocument(path).then((user: User) => {
-        if (user.tipoUsuario === 'jugador') {
+        if (user.tipoUsuario === 'arbitro') {
           // Guardar la información del usuario y redirigir
           this.utilsSvc.saveInLocalStorage('user', user);
           this.form.reset();
   
-          this.utilsSvc.routerLink('tabs-buton'); // Ruta específica para jugador
+          this.utilsSvc.routerLink('tabs-arbitro'); // Ruta específica para árbitro
   
           this.utilsSvc.presentToast({
             message: `Te damos la bienvenida ${user.name} ${user.apellidoPaterno}`,

@@ -1,0 +1,44 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+.box_header{
+ 
+  text-align: center;
+}
+
+
+.body {
+	--ion-background-color: rgba(53, 53, 53, 1);
+    --ion-color: #ffff;
+
+}
+
+/* Aumentar el tamaño de los botones */
+.btn, .btn2, .btn3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7vh; /* Aumentar la altura de los botones */
+    font-size: 1.5rem; /* Aumentar el tamaño del texto */
+    width: 100%; /* Asegura que los botones ocupen todo el ancho del contenedor */
+    border-radius: 10px; /* Opcional, para bordes redondeados */
+    margin: 5px ; /* Espaciado entre los botones */
+  }
+  
+  ion-button {
+    color: #92E3A9;
+  }
+  
+  /* Centrando el contenedor de los botones */
+  ion-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%; /* Asegura que ocupe todo el espacio disponible */
+    padding: 20px 0; /* Espaciado alrededor de los botones */
+  }
+  
+  /* También puedes agregar márgenes o padding a los botones individuales si es necesario */
+  

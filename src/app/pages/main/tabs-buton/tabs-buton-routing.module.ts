@@ -18,8 +18,8 @@ const routes: Routes = [
         loadChildren: () => import('./../home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'profile',
-        loadChildren: () => import('./../profile/profile.module').then(m => m.ProfilePageModule)
+        path: 'agendar',
+        loadChildren: () => import('../agendar/agendar.module').then(m => m.AgendarPageModule)
       },
       {
         path: 'configuracion',

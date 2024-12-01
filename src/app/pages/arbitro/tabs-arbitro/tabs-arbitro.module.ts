@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EstadisticasPageRoutingModule } from './estadisticas-routing.module';
+import { TabsArbitroPageRoutingModule } from './tabs-arbitro-routing.module';
 
-import { EstadisticasPage } from './estadisticas.page';
+import { TabsArbitroPage } from './tabs-arbitro.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EstadisticasPageRoutingModule
+    TabsArbitroPageRoutingModule
   ],
-  declarations: [EstadisticasPage]
+  declarations: [TabsArbitroPage]
 })
-export class EstadisticasPageModule {}
+export class TabsArbitroPageModule {}

@@ -1,9 +1,30 @@
-<app-heder title="Estadisticas"></app-heder>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-header>
     <ion-toolbar>
-      <ion-title size="large">estadisticas</ion-title>
+      <ion-title>Mis Estadísticas</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
+  
+  <ion-content>
+    <ion-card *ngIf="playerStats">
+      <ion-card-header>
+        <ion-card-title>{{ playerStats.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Goles:</strong> {{ playerStats.goles || 0 }}</p>
+        <p><strong>Asistencias:</strong> {{ playerStats.asistencias || 0 }}</p>
+        <p><strong>Tarjetas Amarillas:</strong> {{ playerStats.tarjetasAmarillas || 0 }}</p>
+        <p><strong>Tarjetas Rojas:</strong> {{ playerStats.tarjetasRojas || 0 }}</p>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-card *ngIf="!playerStats">
+      <ion-card-header>
+        <ion-card-title>No hay estadísticas disponibles</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Juega partidos para acumular estadísticas.
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+  
