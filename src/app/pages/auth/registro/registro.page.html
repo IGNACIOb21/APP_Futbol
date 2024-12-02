@@ -1,11 +1,9 @@
-<app-heder backButton="/auth" title="Recuperar cuenta"></app-heder>
-<ion-content>
+<app-heder backButton="/auth" title="Crea tu cuenta"></app-heder>
 
+<ion-content>
     <div class="d-flex-center">
         <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
-
             <app-logo></app-logo>
-
             <!--========= Name ===========-->
             <app-custom-input 
             autocapitalize="name"

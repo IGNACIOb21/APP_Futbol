@@ -1,10 +1,10 @@
+<app-heder title="Evaluar"> </app-heder>
+
 <!-- Lista de jugadores -->
+ <ion-content class="estadisticas">
 <ion-list>
-  
-
   <ion-item *ngFor="let player of players">
-    <ion-card>
-
+    <ion-card >
     <ion-label>
       {{ player.name }} {{ player.apellidoPaterno }} {{ player.apellidoMaterno }}
     </ion-label>
@@ -46,3 +46,4 @@
     </ion-button>
   </form>
 </ng-container>
+</ion-content>

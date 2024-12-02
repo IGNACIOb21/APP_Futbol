@@ -1,0 +1,15 @@
+.estadisticas {
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Usa toda la altura de la pantalla */
+    padding: 16px; /* Espaciado alrededor */
+    box-sizing: border-box; /* Asegura que padding no altere el tamaño */
+    margin-top: 35%;
+  }
+  
+  ion-card {
+    margin: auto; /* Centra el ion-card automáticamente */
+    max-width: 400px; /* Limita el ancho máximo */
+    text-align: center; /* Centra el texto */
+  }

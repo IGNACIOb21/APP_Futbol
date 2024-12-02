@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { EstadisticaArbitroPageRoutingModule } from './estadistica-arbitro-routing.module';
 
 import { EstadisticaArbitroPage } from './estadistica-arbitro.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EstadisticaArbitroPageRoutingModule
+    EstadisticaArbitroPageRoutingModule,
+    SharedModule
   ],
   declarations: [EstadisticaArbitroPage]
 })

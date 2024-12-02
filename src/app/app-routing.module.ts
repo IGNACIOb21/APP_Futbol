@@ -46,24 +46,22 @@ const routes: Routes = [
   {
     path: 'configuracion-arbitro',
     loadChildren: () => import('./pages/arbitro/configuracion-arbitro/configuracion-arbitro.module').then( m => m.ConfiguracionArbitroPageModule)
-  },  {
-    path: 'profile-arbitro',
-    loadChildren: () => import('./pages/arbitro/profile-arbitro/profile-arbitro.module').then( m => m.ProfileArbitroPageModule)
   },
+  
   {
     path: 'home-arbitro',
     loadChildren: () => import('./pages/arbitro/home-arbitro/home-arbitro.module').then( m => m.HomeArbitroPageModule)
   },
   {
-    path: 'agendar',
-    loadChildren: () => import('./main/agendar/agendar.module').then( m => m.AgendarPageModule)
-  }
+    path: 'registro-arbitro',
+    loadChildren: () => import('./pages/arbitro/registro-arbitro/registro-arbitro.module').then( m => m.RegistroArbitroPageModule)
+  },  {
+    path: 'agenda-arbitro',
+    loadChildren: () => import('./pages/arbitro/agenda-arbitro/agenda-arbitro.module').then( m => m.AgendaArbitroPageModule)
+  },
 
 
-
-  
-
-
+   
 ];
 
 @NgModule({

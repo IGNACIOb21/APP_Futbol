@@ -1,16 +1,14 @@
 
-<ion-header>
-    <ion-toolbar>
-      <ion-title>Mis Estadísticas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
+<app-heder title="Estadisticas"></app-heder>
+
+  <div class="estadisticas">
+  <ion-content >
     <ion-card *ngIf="playerStats">
       <ion-card-header>
         <ion-card-title>{{ playerStats.name }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
+        <h2>Valores segun arbitraje del ultimo mes:</h2>
         <p><strong>Goles:</strong> {{ playerStats.goles || 0 }}</p>
         <p><strong>Asistencias:</strong> {{ playerStats.asistencias || 0 }}</p>
         <p><strong>Tarjetas Amarillas:</strong> {{ playerStats.tarjetasAmarillas || 0 }}</p>
@@ -27,4 +25,4 @@
       </ion-card-content>
     </ion-card>
   </ion-content>
-  
+</div>

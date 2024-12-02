@@ -18,10 +18,7 @@ const routes: Routes = [
       path: 'home-arbitro',
       loadChildren: () => import('./../home-arbitro/home-arbitro.module').then(m => m.HomeArbitroPageModule)
     },
-    {
-      path: 'profile-arbitro',
-      loadChildren: () => import('./../profile-arbitro/profile-arbitro.module').then(m => m.ProfileArbitroPageModule)
-    },
+    
     {
       path: 'configuracion-arbitro',
       loadChildren: () => import('./../configuracion-arbitro/configuracion-arbitro.module').then(m => m.ConfiguracionArbitroPageModule)
@@ -29,6 +26,10 @@ const routes: Routes = [
     {
       path: 'estadistica-arbitro',
       loadChildren: () => import('./../estadistica-arbitro/estadistica-arbitro.module').then(m => m.EstadisticaArbitroPageModule)
+    },
+    {
+      path: 'agenda-arbitro',
+      loadChildren: () => import('./../agenda-arbitro/agenda-arbitro.module').then(m => m.AgendaArbitroPageModule)
     },
   ]
 }

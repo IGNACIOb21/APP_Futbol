@@ -70,6 +70,7 @@ export class FirebaseService {
     const snapshot = await getDocs(userRef);
     return snapshot.docs.map(doc => doc.data() as User); // Mapea los documentos a objetos de tipo User
   }
+  
 
   // Obtener usuarios filtrados por tipo
   async getPlayers(): Promise<User[]> {
@@ -116,6 +117,30 @@ async deleteDocument(path: string): Promise<void> {
   await deleteDoc(docRef); // Eliminar el documento
 }
 
+async getAllUsersExceptAdmin(adminUid: string): Promise<User[]> {
+  const db = getFirestore();
+  const userRef = collection(db, 'users');
+  const snapshot = await getDocs(userRef);
 
-  
+  return snapshot.docs
+    .map(doc => {
+      const data = doc.data();
+      console.log('Datos del documento:', data); // Agrega esto para verificar los datos de cada documento
+      return {
+        uid: data['uid'],
+        email: data['email'],
+        password: data['password'],
+        name: data['name'],
+        apellidoPaterno: data['apellidoPaterno'],
+        apellidoMaterno: data['apellidoMaterno'],
+        tipoUsuario: data['tipoUsuario'],
+      } as User;
+    })
+    .filter(user =>
+      user.uid !== adminUid &&
+      (user.tipoUsuario === 'Jugador' || user.tipoUsuario === 'Árbitro')
+    );
 }
+}
+  
+

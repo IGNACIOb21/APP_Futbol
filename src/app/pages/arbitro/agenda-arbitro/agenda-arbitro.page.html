@@ -1,0 +1,14 @@
+<app-heder title="Partidos Agendados"></app-heder>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let partido of partidos">
+      <ion-label>
+        <h2>Fecha: {{ partido.fecha }}</h2>
+        <h3>Hora: {{ partido.hora }}</h3>
+        <p>Ubicación: {{ partido.ubicacion }}</p>
+        <p>Jugadores: {{ partido.jugadores.length }}/11</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

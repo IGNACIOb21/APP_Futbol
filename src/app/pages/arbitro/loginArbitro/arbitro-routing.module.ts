@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: ArbitroPage
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./../../auth/registro/registro.module').then( m => m.RegistroPageModule)
   }
 ];
 

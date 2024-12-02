@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AgendarPageRoutingModule } from './agendar-routing.module';
+import { AgendaArbitroPageRoutingModule } from './agenda-arbitro-routing.module';
 
-import { AgendarPage } from './agendar.page';
+import { AgendaArbitroPage } from './agenda-arbitro.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
@@ -14,10 +14,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    AgendarPageRoutingModule,
+    AgendaArbitroPageRoutingModule,
     SharedModule
-    
   ],
-  declarations: [AgendarPage]
+  declarations: [AgendaArbitroPage]
 })
-export class AgendarPageModule {}
+export class AgendaArbitroPageModule {}
