@@ -1,17 +1,56 @@
-.estadisticas {
-    display: flex; /* Activa Flexbox */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Usa toda la altura de la pantalla */
-    padding: 16px; /* Espaciado alrededor */
-    box-sizing: border-box; /* Asegura que padding no altere el tamaño */
-    margin-top: 35%;
+.evaluacion-page {
+  --background: #1a1a1a; 
+
+  .header {
+    text-align: center;
+    padding: 16px;
+    background: #032b68;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
   }
-  
+
   ion-card {
-    margin: auto; /* Centra el ion-card automáticamente */
-    max-width: 400px; /* Limita el ancho máximo */
-    text-align: center; /* Centra el texto */
-    width: 100%;
-    margin-top: 10px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 16px auto;
+    text-align: center;
+
+    ion-card-title {
+      color: #333;
+      font-size: 1.2rem;
+    }
+
+    ion-button {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
   }
+
+  .no-players {
+    margin: 20px auto;
+    text-align: center;
+    color: white;
+  }
+
+  .evaluation-form {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #f4f4f4;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+    padding: 16px;
+
+    ion-item {
+      margin-bottom: 12px;
+    }
+
+    .form-buttons ion-button {
+      margin-top: 8px;
+    }
+  }
+}

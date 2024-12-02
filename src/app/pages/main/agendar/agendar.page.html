@@ -1,48 +1,57 @@
 <app-heder title="Agendar"></app-heder>
 
 
-<ion-content>
-  <form (ngSubmit)="agendarPartido()">
-    <ion-item>
-      <ion-label position="stacked">Fecha</ion-label>
-      <ion-input type="date" [(ngModel)]="partido.fecha" name="fecha"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Hora</ion-label>
-      <ion-input type="time" [(ngModel)]="partido.hora" name="hora"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Ubicación</ion-label>
-      <ion-input type="text" [(ngModel)]="partido.ubicacion" name="ubicacion"></ion-input>
-    </ion-item>
-
-    <ion-button expand="full" type="submit">Agendar Partido</ion-button>
-  </form>
-
-  <div>
-    <ion-list>
-      <ion-item *ngFor="let partido of partidos">
-        <ion-label>
-          <h2>Fecha: {{ partido.fecha }}</h2>
-          <h3>Hora: {{ partido.hora }}</h3>
-          <p>Ubicación: {{ partido.ubicacion }}</p>
-          <p>Jugadores: {{ partido.jugadores.length }}/11</p>
-        </ion-label>
-        
-        <!-- Botón para unirse al partido -->
-        <ion-button [disabled]="partido.jugadores.length >= 11" (click)="unirseAPartido(partido)">
-          Unirse
-        </ion-button>
-        
-        <!-- Botón para eliminar el partido, visible solo para el creador -->
-        <ion-button color="danger" *ngIf="partido.jugadores[0] === userId" (click)="eliminarPartido(partido)">
-          Eliminar
-        </ion-button>
+<div class="agendar-content">
+  <ion-content>
+    <form (ngSubmit)="agendarPartido()" class="agendar-form">
+      <ion-item class="form-item">
+        <ion-label position="stacked">Fecha</ion-label>
+        <ion-input type="date" [(ngModel)]="partido.fecha" name="fecha"></ion-input>
       </ion-item>
-    </ion-list>
-  </div>
-  
-</ion-content>
 
+      <ion-item class="form-item">
+        <ion-label position="stacked">Hora</ion-label>
+        <ion-input type="time" [(ngModel)]="partido.hora" name="hora"></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Ubicación</ion-label>
+        <ion-input type="text" [(ngModel)]="partido.ubicacion" name="ubicacion"></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" type="submit" class="submit-button">Agendar Partido</ion-button>
+    </form>
+
+    <div class="partidos-list">
+      <ion-list  style="background-color: #1a1a1a;">
+        <ion-item *ngFor="let partido of partidos" class="aaa">
+          <ion-card class="partido-card">
+            <ion-card-header>
+              <ion-card-title>Partido: {{ partido.fecha }} - {{ partido.hora }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p><strong>Ubicación:</strong> {{ partido.ubicacion }}</p>
+              <p><strong>Jugadores:</strong> {{ partido.jugadores.length }}/11</p>
+            </ion-card-content>
+
+            <ion-button 
+              [disabled]="partido.jugadores.length >= 11" 
+              (click)="unirseAPartido(partido)" 
+              class="unirse-button">
+              Unirse
+            </ion-button>
+
+            <ion-button 
+              color="danger" 
+              *ngIf="partido.jugadores[0] === userId" 
+              (click)="eliminarPartido(partido)" 
+              class="eliminar-button">
+              Eliminar
+            </ion-button>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</div> 

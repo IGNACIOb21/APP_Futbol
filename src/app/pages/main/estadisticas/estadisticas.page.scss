@@ -1,15 +1,76 @@
 .estadisticas {
-    display: flex; /* Activa Flexbox */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Usa toda la altura de la pantalla */
-    padding: 16px; /* Espaciado alrededor */
-    box-sizing: border-box; /* Asegura que padding no altere el tamaño */
-    margin-top: 35%;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  height: 100vh; 
+  padding: 16px; 
+  box-sizing: border-box; 
+  margin-top: 0; 
+  background-color: #1a1a1a; 
+}
+
+ion-content {
+  --background: transparent; 
+
+  .stats-card {
+    background: #ffffff;
+    border-radius: 15px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    margin: 20px auto; 
+    padding: 20px;
+    width: 90%;
+    max-width: 450px; 
+    transition: all 0.3s ease-in-out; 
+
+    &:hover {
+      transform: scale(1.05); 
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    }
+
+    ion-card-title {
+      font-size: 1.8rem; 
+      text-align: center;
+      color: #333333; 
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #555555; 
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 1.1rem; 
+      color: #666666; 
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px; 
+    }
   }
-  
-  ion-card {
-    margin: auto; /* Centra el ion-card automáticamente */
-    max-width: 400px; /* Limita el ancho máximo */
-    text-align: center; /* Centra el texto */
+
+  .no-stats {
+    text-align: center; 
+    background: #ffefef; 
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 20px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+
+    ion-card-title {
+      color: #d9534f; 
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #777777; 
+      margin-top: 12px;
+    }
   }
+}

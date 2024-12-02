@@ -1,27 +1,29 @@
 
 <app-heder title="Estadisticas"></app-heder>
 
-  <div class="estadisticas">
-  <ion-content >
-    <ion-card *ngIf="playerStats">
+<div class="estadisticas">
+  <ion-content>
+    <!-- Si hay estadísticas disponibles -->
+    <ion-card *ngIf="playerStats" class="stats-card">
       <ion-card-header>
         <ion-card-title>{{ playerStats.name }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <h2>Valores segun arbitraje del ultimo mes:</h2>
-        <p><strong>Goles:</strong> {{ playerStats.goles || 0 }}</p>
-        <p><strong>Asistencias:</strong> {{ playerStats.asistencias || 0 }}</p>
-        <p><strong>Tarjetas Amarillas:</strong> {{ playerStats.tarjetasAmarillas || 0 }}</p>
-        <p><strong>Tarjetas Rojas:</strong> {{ playerStats.tarjetasRojas || 0 }}</p>
+        <h2 class="subtitle">Estadísticas del último mes</h2>
+        <p><strong>⚽ Goles:</strong> {{ playerStats.goles || 0 }}</p>
+        <p><strong>🎯 Asistencias:</strong> {{ playerStats.asistencias || 0 }}</p>
+        <p><strong>🟨 Tarjetas Amarillas:</strong> {{ playerStats.tarjetasAmarillas || 0 }}</p>
+        <p><strong>🟥 Tarjetas Rojas:</strong> {{ playerStats.tarjetasRojas || 0 }}</p>
       </ion-card-content>
     </ion-card>
-  
-    <ion-card *ngIf="!playerStats">
+
+    <!-- Si no hay estadísticas disponibles -->
+    <ion-card *ngIf="!playerStats" class="stats-card no-stats">
       <ion-card-header>
-        <ion-card-title>No hay estadísticas disponibles</ion-card-title>
+        <ion-card-title>Sin estadísticas disponibles</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        Juega partidos para acumular estadísticas.
+        <p>Juega partidos para acumular estadísticas y mejorar tu rendimiento.</p>
       </ion-card-content>
     </ion-card>
   </ion-content>
